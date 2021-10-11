@@ -18,4 +18,15 @@ public class ListaProdutosPage {
     public String capturarMensagemApresentada() {
         return navegador.findElement(By.cssSelector(".toast.rounded")).getText();
     }
+
+    public ListaProdutosPage excluirItemSalvo() {
+        navegador.findElement(By.cssSelector("div[class='container'] ul > li:nth-last-child(1) > a")).click();
+        return this;
+    }
+
+    public String capturarMensagemDeExclusaoComSucesso() {
+        return navegador.findElement(By.cssSelector(".toast.rounded")).getText();
+    }
 }
+
+

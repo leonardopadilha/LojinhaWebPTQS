@@ -89,9 +89,28 @@ public class ProdutosTest {
         assertEquals(Mensagem.PRODUTO_CADASTRADO_COM_SUCESSO, msgProdutoCadastradoComSucesso);
     }
 
+    @Test
+    @DisplayName("Excluir item")
+    public void testExcluirItemCadastrado() {
+        String msgExclucao = loginPage
+                .informarUsuario("admin")
+                .informarSenha("admin")
+                .submeterFormularioLogin()
+                .acessarAdicionarProduto()
+                .informarNomeProduto("Teclado Multilaser")
+                .informarValorProduto("50000")
+                .informarCoresProduto("preto")
+                .submeterFormularioDeAdicaoComSucesso()
+                .retornarListagemProdutos()
+                .excluirItemSalvo()
+                .capturarMensagemDeExclusaoComSucesso();
+        assertEquals(Mensagem.PRODUTO_EXCLUIDO_COM_SUCESSO, msgExclucao);
+    }
+
+
     @AfterEach
     public void afterEach() {
-       navegador.quit();
+       //navegador.quit();
     }
 
 }

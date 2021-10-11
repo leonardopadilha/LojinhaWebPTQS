@@ -13,4 +13,9 @@ public class FormularioEdicaoProdutoPage {
     public String capturarMensagemDeSucessoRetornada() {
         return navegador.findElement(By.cssSelector(".toast.rounded")).getText();
     }
+
+    public ListaProdutosPage retornarListagemProdutos() {
+        navegador.findElement(By.partialLinkText("LISTA DE PRODUTOS")).click();
+        return new ListaProdutosPage(navegador);
+    }
 }
