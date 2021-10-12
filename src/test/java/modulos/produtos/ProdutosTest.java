@@ -3,7 +3,9 @@ package modulos.produtos;
 import modulos.interfaces.Mensagem;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import paginas.LoginPage;
 
 import java.time.Duration;
@@ -107,10 +109,47 @@ public class ProdutosTest {
         assertEquals(Mensagem.PRODUTO_EXCLUIDO_COM_SUCESSO, msgExclucao);
     }
 
+    @Test
+    @DisplayName("Editar um item para incluir componente")
+    public void testEditarItemParaIncluirComponente() {
+        String msgRetornoComponenteCadastradoComSucesso = loginPage
+                .informarUsuario("admin")
+                .informarSenha("admin")
+                .submeterFormularioLogin()
+                .acessarAdicionarProduto()
+                .informarNomeProduto("Mouse")
+                .informarValorProduto("12500")
+                .informarCoresProduto("preto")
+                .submeterFormularioDeAdicaoComSucesso()
+                .adicionarComponenteProduto()
+                .informarNomeComponente()
+                .informarQuantidadeComponente()
+                .salvarInformacoesComponente()
+                .capturarMensagemDeSucessoRetornada();
+        assertEquals(Mensagem.PRODUTO_CADASTRADO_COM_SUCESSO, msgRetornoComponenteCadastradoComSucesso);
+    }
 
+    @Test
+    @DisplayName("Excluir componente")
+    public void testExcluirComponente() throws InterruptedException {
+        loginPage
+                .informarUsuario("admin")
+                .informarSenha("admin")
+                .submeterFormularioLogin()
+                .acessarAdicionarProduto()
+                .informarNomeProduto("Mouse")
+                .informarValorProduto("12500")
+                .informarCoresProduto("preto")
+                .submeterFormularioDeAdicaoComSucesso()
+                .adicionarComponenteProduto()
+                .informarNomeComponente()
+                .informarQuantidadeComponente()
+                .salvarInformacoesComponente()
+                .excluirComponenteIncluso();
+    }
     @AfterEach
     public void afterEach() {
-       //navegador.quit();
+       navegador.quit();
     }
 
 }

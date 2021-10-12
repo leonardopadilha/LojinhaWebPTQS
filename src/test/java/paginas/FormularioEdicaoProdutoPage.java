@@ -18,4 +18,14 @@ public class FormularioEdicaoProdutoPage {
         navegador.findElement(By.partialLinkText("LISTA DE PRODUTOS")).click();
         return new ListaProdutosPage(navegador);
     }
+
+    public AdicionarComponentePage adicionarComponenteProduto() {
+        navegador.findElement(By.partialLinkText("ADICIONAR COMPONENTE")).click();
+        return new AdicionarComponentePage(navegador);
+    }
+
+    public FormularioEdicaoProdutoPage excluirComponenteIncluso() {
+        navegador.findElement(By.cssSelector("a[class='secondary-content'] > i")).click();
+        return this;
+    }
 }
